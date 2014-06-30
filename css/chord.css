@@ -1,0 +1,129 @@
+#chart_apoio, #chart_cabeca {
+font: 10px sans-serif;
+}
+
+
+.chord path, .chord_base path, .chord_bases path {
+	fill-opacity: .77;
+	stroke: #fff;
+	stroke-width: 1px;
+}
+
+.nome_partido_borda {
+	font-size: 22px;
+	fill: #fff;
+}
+
+.numero_candidatos {
+	font: 12px;
+	font-weight: normal;
+}
+
+.balao {
+	font: 12px sans-serif;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: left;
+}
+
+figure.charts {
+	width: 800;
+	height: 800;
+	margin: -60px 0 -80px 0;
+	padding:0;
+}
+
+.gradiente_externo {
+	fill: #000;
+	opacity: 0.3;
+}
+
+/* BOX DA LEGENDA */
+.legenda {
+	font-size: 12px;
+	position: absolute;
+	padding: 10px 0px 10px 10px;
+	margin-top: 60px;
+	z-index: 100000;
+	line-height:1.4;
+	/**/
+	-webkit-transition: height 1s width 1s ease-in;
+	-moz-transition: height 1s width 1s ease-in;
+	-o-transition: height 1s width 1s ease-in;
+	transition-property: width, height;
+	transition-duration: 1s;
+	transition-timing-function: ease-out;
+	-webkit-transition-property: background-color;
+	-webkit-transition-duration: 1s;
+	-o-transition-property: background-color;
+	-o-transition-duration: 1s;
+	/**/
+}
+/*
+div.legenda-in {
+	-webkit-box-shadow:0 0 10px #444444; 
+	-moz-box-shadow: 0 0 10px #444444; 
+	-o-box-shadow: 0 0 10px #444444;
+}*/
+
+.legenda-inner { 
+	background-color: #555;
+	color: #FFF;
+	max-width: 240px;
+	padding: 5px 8px 4px 8px;
+	text-align: left;
+}
+
+/* Rounded corners */
+.legenda-inner {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+  
+/* Uncomment for shadow */
+.legenda-inner {
+	box-shadow: 0 0 5px #000000;
+	-webkit-box-shadow: 0 0 5px #000000;
+	-moz-box-shadow: 0 0 5px #000000;
+}
+
+#cabeca_de_chapa {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.PMDB { 
+	color: #D9C52E !important;
+}
+.PT { 
+	color: #E81518 !important;
+}
+.PSDB { 
+	color: #1518E8 !important;
+}
+.PSD { 
+	color: #59C43B !important;
+}
+.PP { 
+	color: #7C2CF5 !important;
+}
+.PSB { 
+	color: #FFA200 !important;
+}
+.PDT { 
+	color: #34E0A4 !important;
+}
+.PTB { 
+	color: #E36432 !important;
+}
+.DEM { 
+	color: #62B5D1 !important;
+}
+.PR { 
+	color: #87E034 !important;
+}
+
+.legenda_nome_partidos {
+	
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Estadão Dados: "Coligações"</title>
+	<meta name="Author" content="Estadão.com.br -  José Roberto Toledo, Daniel Bramatti, Amanda Rossi e Diego Rabatone">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<meta property="og:image" content="http://estadaodados.com/html/coligacoes/estadaodados_coligacoes.jpg"/>
+	<meta property="og:title" content="O JOGO DAS COLIGAÇÕES"/>
+	<meta property="og:site_name" content="Estadão Dados"/>
+	<meta property="og:url" content="http://estadaodados.com/html/coligacoes/"/>
+	<meta property="og:site_name" content="Estadão Dados"/>
+	<link rel="image_src" href="http://estadaodados.com/html/coligacoes/estadaodados_coligacoes.jpg"/>
+
+<!-- CSS Files -->
+<link type="text/css" href="./css/base.css" rel="stylesheet" />
+<link type="text/css" href="./css/estadao.basometro.css" rel="stylesheet" />
+<link type="text/css" href="./css/chord.css" rel="stylesheet" />
+<link type="text/css" href="./css/estadao.css" rel="stylesheet" />
+<link type="text/css" href="./css/tipsy.css" rel="stylesheet" />
+
+<!--[if IE]><script language="javascript" type="text/javascript" src="./js/excanvas.js"></script><![endif]-->
+
+<!-- JIT Library File -->
+<script language="javascript" type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="./js/jit.js"></script>
+<script language="javascript" type="text/javascript" src="./js/d3.min.js"></script>
+<!--script language="javascript" type='text/javascript' src='./js/jquery.tipsy.js'></script-->
+
+
+</head>
+<body >
+  <nav id="barraEstadaoParceiros" class="radius_top">
+    <a href="http://www.estadao.com.br/" target="_top" title="Estadão.com.br" class="lgBarraEstadaoParceiros"><img src="http://www.estadao.com.br/estadao/novo/img/logoEstadao.gif" width="150" height="27" border="0" alt="Estadão.com.br" target="_top" title="Estadão.com.br"></a>
+    <ul>
+      <li class="itemBarraEstadaoParceiros">
+        <a href="http://politica.estadao.com.br/" onclick="_gaq.push(['_trackEvent', 'Noticias_Relacionadas', '', 'Teste no Menu']);" target="_top" title="POLÍTICA">POLÍTICA</a>
+      </li>
+      <li class="itemBarraEstadaoParceiros">
+        <a href="http://economia.estadao.com.br/" target="_top" title="ECONOMIA">ECONOMIA</a></li>
+      <li class="itemBarraEstadaoParceiros">
+        <a href="http://www.estadao.com.br/internacional/" target="_top" title="INTERNACIONAL">INTERNACIONAL</a>
+      </li>
+      <li class="itemBarraEstadaoParceiros">
+        <a href="http://www.estadao.com.br/esportes/" target="_top" title="ESPORTES">ESPORTES</a>
+      </li>
+      <li class="itemBarraEstadaoParceiros">
+        <a href="http://link.estadao.com.br/" target="_top" title="TECNOLOGIA">TECNOLOGIA</a>
+      </li>
+      <li class="itemBarraEstadaoParceiros">
+        <a href="http://divirta-se.estadao.com.br/" target="_top" title="DIVIRTA-SE">DIVIRTA-SE</a>
+      </li>
+      <li class="itemBarraEstadaoParceiros">
+        <a href="http://pme.estadao.com.br/" target="_top" title="PME">PME</a>
+      </li>
+      <li class="itemBarraEstadaoParceiros">
+        <a href="http://www.estadao.com.br/opiniao/" target="_top" title="OPINIÃO">OPINIÃO</a>
+      </li>
+      <li class="itemBarraEstadaoParceiros">
+        <a href="http://radio.estadao.com.br/" target="_top" title="RÁDIO">RÁDIO</a>
+      </li>
+      <li class="itemBarraEstadaoParceiros">
+        <a href="http://www.jt.com.br/" target="_top" title="JT">JT</a>
+      </li>
+      <li class="itemBarraEstadaoParceiros">
+        <a href="http://www.territorioeldorado.limao.com.br/" target="_top" title="ELDORADO">ELDORADO</a>
+      </li>
+      <li class="itemBarraEstadaoParceiros">
+        <a href="http://www.estadao.com.br/blogs/" target="_top" title="BLOGS">BLOGS</a>
+      </li>
+      <li class="itemBarraEstadaoParceiros">
+        <a class="lastItemBarra" href="http://topicos.estadao.com.br/" target="_top" title="TÓPICOS">TÓPICOS</a>
+      </li>
+    </ul>
+  </nav>
+
+  <header class="bt2 radius">
+    <h1>
+      <img id="estadao_dados" src="logo_estadao_dados.png" height="30px" title="Estadão.com.br" align="middle">
+    </h1>
+    <div id="navegacao_topo">
+      <a id="listar_tools" title="Basômetro,Biomas2012,Coligações,Cotas,Eleições_2012,Fuvest_2013,IDEB,Intenção_de_Voto,Lista_ENEM_2011,Que_SP_vc_quer?,Religiões,São_Paulo_que_balança" class="last drop">Coligações</a>
+	  <a>Gráfico com</a> 
+	  <a id="listar_quantidades" title="5_Partidos,10_Partidos" class="last drop">Número de Partidos</a>
+      <div id="choices"></div>
+    </div>
+
+    <!-- 
+    <aside> 
+      <input type="button" value="<< VOLTAR" id="back">
+    </aside>
+     -->
+  </header>
+
+
+  <!--nav class="bt2 radius">
+    <figure>
+      <img id="estadao_dados" src="logo_estadao_dados.png" height="30px" title="Estadão.com.br" align="middle">
+    </figure>
+    <ul id="navegacao_topo">
+      <li class="last">Coligações</li>
+	  <li class="choices"></li>
+    </ul>
+
+  </nav-->
+  
+  <section id="coligacoes_section">
+	    <br>
+	    <h1 style="color:black;font-size:1.9em">O JOGO DAS COLIGAÇÕES</h1>
+	    <div style="color:#333;font-size:1.1em">Escolha um partido e veja os apoios que ele recebe e dá às outras siglas na eleição de prefeito</div>
+	    <hr>
+	    <br>
+	    <strong id="titulo_chamada" style="color:grey;font-size:1.5em;">PSDB costura mais alianças que o PT nas eleições para prefeito</strong>
+	    <div id="texto_chamada" style="color:grey;margin-top:3px;">O PSDB entra nas eleições para prefeito com menos candidatos que em 2008, mas ocupa o segundo lugar em apoios recebidos, atrás do PMDB e à frente do PT. Já DEM, PP, PDT, PTB e PR, que também perderam candidatos, são pequenos até em número de apoios e recebem menos do que oferecem. Escolha um partido na roda e bom jogo.</div>
+	    <br>
+	  
+	<article>
+    	<div id="infografico" style="display:inline; align:center;">
+			<center>
+				<!--div id="legenda_2008" style="align:center;loat:left;">
+					</div>
+		 			<div id="chart_2008" style="align:center;float:left;">
+						<h2> Gráfico das Coligações Partidárias 2008</h2>
+				</div-->
+					<aside id="legenda" class="legenda legenda-inner legenda-out">
+					</aside>
+		 			<figure id="chart_2012" class="charts"></figure>
+			</center>
+	</article>
+  </section>
+  
+  <div>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="estadaodados" data-lang="pt" data-hashtags="biomas2012">Tweetar</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <br>
+    <div id="fb-root" style="margin-top:5px;">
+      <!--a name="fb_share">Recomendar</a>
+      <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+		  <script>function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}</script><style> html .fb_share_button { display: -moz-inline-block; display:inline-block; padding:1px 20px 0 5px; height:15px; border:1px solid #d8dfea; background:url(http://static.ak.facebook.com/images/share/facebook_share_icon.gif?6:26981) no-repeat top right; } html .fb_share_button:hover { color:#fff; border-color:#295582; background:#3b5998 url(http://static.ak.facebook.com/images/share/facebook_share_icon.gif?6:26981) no-repeat top right; text-decoration:none; } </style> <a rel="nofollow" href="http://www.facebook.com/share.php?u=<;url>" class="fb_share_button" onclick="return fbs_click()" target="_blank" style="text-decoration:none;">Recomendar</a><br/!-->
+		  <script src="http://widgets.fbshare.me/files/fbshare.js"></script>
+    </div>
+  </div><br/>
+
+
+  <small style="color:grey;">
+Como ler o gráfico: os tamanhos das bordas são proporcionais ao número de candidatos a prefeito de cada partido. A espessura do encontro da conexão com a borda indica a quantidade de apoios recebidos - quanto mais larga, maior é o apoio. Como o número de apoios do PT aos candidatos do PMDB é de 811, contra 414 no sentido oposto, a conexão do PT com o PMDB é mais larga na borda peemedebista, por exemplo. A cor amarela da conexão também indica que o PMDB recebe mais apoio do que fornece para os petistas. Já os picos que não se conectam com nenhum outro partido mostram o número de candidatos "solteiros", não apoiados por outras legendas.
+<br/><br/>
+Leia também: <a
+href="http://www.estadao.com.br/noticias/politica,pt-e-pmdb-tem-o-maior-numero-de-parcerias-nas-eleicoes-municipais,899992,0.htm">PT
+e PMDB têm o maior número de parcerias nas eleições municipais</a>
+<br/><br/>
+Diego Rabatone, José Roberto de Toledo e Amanda Rossi
+<br/><br/>
+Fonte: TSE/Estadão Dados
+  </small>
+
+  <footer>
+    <b>Grupo Estado</b> • Copyright © 2007-2012 • <a href="http://www.gnu.org/licenses/agpl-3.0.html">Alguns direitos reservados</a>
+  </footer>
+
+	<script language="javascript" type="text/javascript" src="./js/candidatos.js"></script>
+
+  <div id="log"></div>
+
+  <script src="js/main.js" canvas="grafico"></script>
+
+    <!-- google analytics -->
+    <script language="javascript" type="text/javascript" src="http://estadaodados.com/base/js/edados_analytics.js"></script>
+
+</body>
+</html>
