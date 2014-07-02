@@ -147,6 +147,7 @@ body  {
 }
 
 div.div-botao-eleicao .input-group {
+  padding-bottom: 10px;
   /*padding-left: 60px;*/
 }
 

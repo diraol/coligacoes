@@ -43,14 +43,14 @@ var Main = (function() {
         '2014': [
             [145,811,594,523,509,611,597,627,564,545],
             [414,301,188,321,464,342,471,348,166,320],
-            [429,155,86,520,385,548,394,519,640,414],
-            [321,317,342,49,304,372,302,295,314,315],
-            [272,367,258,307,64,275,301,274,226,246],
-            [251,299,351,267,226,86,270,295,295,258],
-            [217,276,216,179,194,214,83,214,172,171],
-            [231,246,221,186,192,256,212,72,226,209],
-            [193,88,271,195,174,209,167,181,70,211],
-            [174,213,211,182,170,194,171,204,255,39],
+            [429,155,86 ,520,385,548,394,519,640,414],
+            [321,317,342,49 ,304,372,302,295,314,315],
+            [272,367,258,307,64 ,275,301,274,226,246],
+            [251,299,351,267,226,86 ,270,295,295,258],
+            [217,276,216,179,194,214,83 ,214,172,171],
+            [231,246,221,186,192,256,212,72 ,226,209],
+            [193, 88,271,195,174,209,167,181,70 ,211],
+            [174,213,211,182,170,194,171,204,255,39 ],
         ]
     },
     dados = null,
@@ -59,9 +59,9 @@ var Main = (function() {
         'anos': [2012, 2014],
         'max_partidos': 10
     },
-    _default = {'ano':2012,'partidos':10},
+    _default = {'ano':2014,'partidos':10},
     _currentRoute = {
-        'ano': "2012",
+        'ano': "2014",
         'partidos': "10"
     };
 
@@ -244,7 +244,17 @@ var Main = (function() {
     }
 
     function _atualiza_seletores(){
-        $(".botao-ano")[0].innerHTML = _currentRoute["ano"];
+        if (_currentRoute["ano"] == "2014") {
+            $("#btn2014").addClass("btn-primary");
+            $("#btn2014").removeClass("btn-default");
+            $("#btn2012").addClass("btn-default");
+            $("#btn2012").removeClass("btn-primary");
+        } else {
+            $("#btn2012").addClass("btn-primary");
+            $("#btn2012").removeClass("btn-default");
+            $("#btn2014").addClass("btn-default");
+            $("#btn2014").removeClass("btn-primary");
+        }
         $(".input-partidos")[0].value = _currentRoute["partidos"];
     }
 
@@ -283,11 +293,11 @@ var Main = (function() {
             _atualiza_seletores();
         });
 
-        var a = $('.link-ano');
+        var a = $('.botao-ano');
         for (var i=0; i<a.length; i++){
             a[i].onclick=function(e){
                 e.preventDefault();
-                crossroads.parse('/ano/' + this.href.split("#ano/").pop());
+                crossroads.parse('/ano/' + this.value);
             }
         };
 
