@@ -126,24 +126,31 @@
 
   <!-- Conteúdo Principal -->
   <section id="main_content" class="container-fluid">
-    <div class="col-sm-12 col-md-6 div-botao-eleicao">
-      <div class="input-group text-right">
-        <div class="input-group-btn text-right">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Eleição <span class="botao-ano">2014</span>&nbsp;<span class="caret"></span></button>
-          <ul class="dropdown-menu pull-right">
-            <li><a class="link-ano" href="#ano/2014">Eleição 2014</a></li>
-            <li><a class="link-ano" href="#ano/2012">Eleição 2012</a></li>
-          </ul>
-        </div><!-- /btn-group-->
-      </div><!-- /input-group-->
-    </div><!-- /.col-xs-6-->
-    <div class="col-sm-12 col-md-6 recorte">
-      <label> Número de Partidos:</label><br/> 1 <input type="range" min="1" max="10" step="1" value="5" class="input-partidos" onChange="Main.atualiza_num_partidos(this);"/> 10
-    </div><!-- /.col-xs-6-->
-    <aside id="legenda" class="col-md-1 col-sm-12 legenda legenda-inner legenda-out"></aside>
-    <article id="infografico" class="col-md-11 col-sm-12">
+    <div class="col-sm-12 col-md-3">
+      <div class="col-xs-12 div-botao-eleicao center-block">
+        <div class="input-group">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Eleição <span class="botao-ano">2014</span>&nbsp;<span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a class="link-ano" href="#ano/2014">Eleição 2014</a></li>
+              <li><a class="link-ano" href="#ano/2012">Eleição 2012</a></li>
+            </ul>
+          </div><!-- /btn-group-->
+        </div><!-- /input-group-->
+      </div>
+      <div class="col-xs-3 text-left">1</div>
+      <div class="col-xs-6 text-center">Partidos</div>
+      <div class="col-xs-3 text-right recorte-max">10</div>
+      <div class="col-xs-12 recorte">
+        <input type="range" min="1" max="10" step="1" value="5" class="input-partidos" onChange="Main.atualiza_num_partidos(this);"/>
+      </div>
+      <div class="col-xs-12">
+        <aside id="legenda" class="legenda legenda-inner legenda-out"></aside>
+      </div>
+    </div>
+    <div id="infografico" class="col-sm-12 col-md-9">
       <figure id="chart" class="charts"></figure>
-    </article>
+    </div>
     <div class="col-xs-12 explicativo">
       <p>Como ler o gráfico: os tamanhos das bordas são proporcionais ao número de candidatos a prefeito de cada partido. A espessura do encontro da conexão com a borda indica a quantidade de apoios recebidos - quanto mais larga, maior é o apoio. Como o número de apoios do PT aos candidatos do PMDB é de 811, contra 414 no sentido oposto, a conexão do PT com o PMDB é mais larga na borda peemedebista, por exemplo. A cor amarela da conexão também indica que o PMDB recebe mais apoio do que fornece para os petistas. Já os picos que não se conectam com nenhum outro partido mostram o número de candidatos "solteiros", não apoiados por outras legendas.</p>
     </div>
