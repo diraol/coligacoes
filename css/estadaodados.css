@@ -277,12 +277,12 @@ figure.charts {
 }
 /*
 div.legenda-in {
-  -webkit-box-shadow:0 0 10px #444444; 
-  -moz-box-shadow: 0 0 10px #444444; 
+  -webkit-box-shadow:0 0 10px #444444;
+  -moz-box-shadow: 0 0 10px #444444;
   -o-box-shadow: 0 0 10px #444444;
 }*/
 
-.legenda-inner { 
+.legenda-inner {
   background-color: #555;
   color: #FFF;
   /*max-width: 240px;*/
@@ -296,7 +296,7 @@ div.legenda-in {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
 }
-  
+
 /* Uncomment for shadow */
 .legenda-inner {
   box-shadow: 0 0 5px #000000;
@@ -309,37 +309,42 @@ div.legenda-in {
   font-size: 18px;
 }
 
-.PMDB { 
+.PMDB {
   color: #D9C52E !important;
 }
-.PT { 
+.PT {
   color: #E81518 !important;
 }
-.PSDB { 
+.PSDB {
   color: #1518E8 !important;
 }
-.PSD { 
+.PSD {
   color: #59C43B !important;
 }
-.PP { 
+.PP {
   color: #7C2CF5 !important;
 }
-.PSB { 
+.PSB {
   color: #FFA200 !important;
 }
-.PDT { 
+.PDT {
   color: #34E0A4 !important;
 }
-.PTB { 
+.PTB {
   color: #E36432 !important;
 }
-.DEM { 
+.DEM {
   color: #62B5D1 !important;
 }
-.PR { 
+.PR {
   color: #87E034 !important;
 }
 
+.div-botao-cargo {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 .legenda_nome_partidos {
-  
+
 }

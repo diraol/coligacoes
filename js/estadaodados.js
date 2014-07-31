@@ -20,14 +20,28 @@ var Main = (function() {
 
     /** Código do gráfico dos cabeças de chapa **/
     var partidos = {};
+        partidos['2010'] = ["PMDB","PT","PSDB","PSD","PSB","PP","PDT","PTB","DEM","PR"];
         partidos['2012'] = ["PMDB","PT","PSDB","PSD","PSB","PP","PDT","PTB","DEM","PR"];
         partidos['2014'] = ["PMDB","PT","PSDB","PSD","PSB","PP","PDT","PTB","DEM","PR"];
 
     var total_candidatos = {};
+        total_candidatos['2010']=["2.292", "1.789", "1.639", "1.094", "1.044", "1.079", "848", "832", "739", "714"];
         total_candidatos['2012']=["2.292", "1.789", "1.639", "1.094", "1.044", "1.079", "848", "832", "739", "714"];
         total_candidatos['2014']=["2.292", "1.789", "1.639", "1.094", "1.044", "1.079", "848", "832", "739", "714"];
 
     var full_dados = {
+        '2010': [
+            [145,811,594,523,509,611,597,627,564,545],
+            [414,301,188,321,464,342,471,348,166,320],
+            [429,155,86,520,385,548,394,519,640,414],
+            [321,317,342,49,304,372,302,295,314,315],
+            [272,367,258,307,64,275,301,274,226,246],
+            [251,299,351,267,226,86,270,295,295,258],
+            [217,276,216,179,194,214,83,214,172,171],
+            [231,246,221,186,192,256,212,72,226,209],
+            [193,88,271,195,174,209,167,181,70,211],
+            [174,213,211,182,170,194,171,204,255,39],
+        ],
         '2012': [
             [145,811,594,523,509,611,597,627,564,545],
             [414,301,188,321,464,342,471,348,166,320],
@@ -56,11 +70,13 @@ var Main = (function() {
     dados = null,
     grafico = null,
     _basicos = {
-        'anos': [2012, 2014],
-        'max_partidos': 10
+        'cargos': ["Prefeito","Governador"],
+        'anos': ["2010", "2012", "2014"],
+        'max_partidos': "10"
     },
-    _default = {'ano':2014,'partidos':10},
+    _default = {'ano':"2014",'partidos':"10",'cargo':"Governador"},
     _currentRoute = {
+        'cargo': "Governador",
         'ano': "2014",
         'partidos': "10"
     };
@@ -244,17 +260,42 @@ var Main = (function() {
     }
 
     function _atualiza_seletores(){
+        /* Atualizando seletores de ano */
         if (_currentRoute["ano"] == "2014") {
             $("#btn2014").addClass("btn-primary");
             $("#btn2014").removeClass("btn-default");
             $("#btn2012").addClass("btn-default");
             $("#btn2012").removeClass("btn-primary");
-        } else {
+            $("#btn2010").addClass("btn-default");
+            $("#btn2010").removeClass("btn-primary");
+        } else if (_currentRoute["ano"] == "2012"){
             $("#btn2012").addClass("btn-primary");
             $("#btn2012").removeClass("btn-default");
             $("#btn2014").addClass("btn-default");
             $("#btn2014").removeClass("btn-primary");
+            $("#btn2010").addClass("btn-default");
+            $("#btn2010").removeClass("btn-primary");
+        } else {
+            $("#btn2010").addClass("btn-primary");
+            $("#btn2010").removeClass("btn-default");
+            $("#btn2014").addClass("btn-default");
+            $("#btn2014").removeClass("btn-primary");
+            $("#btn2012").addClass("btn-default");
+            $("#btn2012").removeClass("btn-primary");
         }
+        /* Atualizando seletores de cargo */
+        if (_currentRoute["ano"] == "2010" || _currentRoute["ano"] == "2014") {
+            $("#btnGovernador").removeClass("btn-default");
+            $("#btnGovernador").addClass("btn-primary");
+            $("#btnPrefeito").addClass("btn-default");
+            $("#btnPrefeito").removeClass("btn-primary");
+        } else {
+            $("#btnPrefeito").removeClass("btn-default");
+            $("#btnPrefeito").addClass("btn-primary");
+            $("#btnGovernador").addClass("btn-default");
+            $("#btnGovernador").removeClass("btn-primary");
+        }
+
         $(".input-partidos")[0].value = _currentRoute["partidos"];
     }
 
@@ -308,6 +349,7 @@ var Main = (function() {
                 crossroads.parse('/partidos/' + this.value);
             }
         };
+
         grafico = _gera_grafico(_currentRoute['ano'], _currentRoute['partidos'], "chart")
 
         if (window.location.hash) {
