@@ -20,28 +20,14 @@ var Main = (function() {
 
     /** Código do gráfico dos cabeças de chapa **/
     var partidos = {};
-        partidos['2010'] = ["PMDB","PT","PSDB","PSD","PSB","PP","PDT","PTB","DEM","PR"];
+        /* Informação 'default' */
         partidos['2012'] = ["PMDB","PT","PSDB","PSD","PSB","PP","PDT","PTB","DEM","PR"];
-        partidos['2014'] = ["PMDB","PT","PSDB","PSD","PSB","PP","PDT","PTB","DEM","PR"];
 
     var total_candidatos = {};
-        total_candidatos['2010']=["2.292", "1.789", "1.639", "1.094", "1.044", "1.079", "848", "832", "739", "714"];
+        /* Informação 'default' */
         total_candidatos['2012']=["2.292", "1.789", "1.639", "1.094", "1.044", "1.079", "848", "832", "739", "714"];
-        total_candidatos['2014']=["2.292", "1.789", "1.639", "1.094", "1.044", "1.079", "848", "832", "739", "714"];
 
     var full_dados = {
-        '2010': [
-            [145,811,594,523,509,611,597,627,564,545],
-            [414,301,188,321,464,342,471,348,166,320],
-            [429,155,86,520,385,548,394,519,640,414],
-            [321,317,342,49,304,372,302,295,314,315],
-            [272,367,258,307,64,275,301,274,226,246],
-            [251,299,351,267,226,86,270,295,295,258],
-            [217,276,216,179,194,214,83,214,172,171],
-            [231,246,221,186,192,256,212,72,226,209],
-            [193,88,271,195,174,209,167,181,70,211],
-            [174,213,211,182,170,194,171,204,255,39],
-        ],
         '2012': [
             [145,811,594,523,509,611,597,627,564,545],
             [414,301,188,321,464,342,471,348,166,320],
@@ -53,31 +39,19 @@ var Main = (function() {
             [231,246,221,186,192,256,212,72,226,209],
             [193,88,271,195,174,209,167,181,70,211],
             [174,213,211,182,170,194,171,204,255,39],
-        ],
-        '2014': [
-            [145,811,594,523,509,611,597,627,564,545],
-            [414,301,188,321,464,342,471,348,166,320],
-            [429,155,86 ,520,385,548,394,519,640,414],
-            [321,317,342,49 ,304,372,302,295,314,315],
-            [272,367,258,307,64 ,275,301,274,226,246],
-            [251,299,351,267,226,86 ,270,295,295,258],
-            [217,276,216,179,194,214,83 ,214,172,171],
-            [231,246,221,186,192,256,212,72 ,226,209],
-            [193, 88,271,195,174,209,167,181,70 ,211],
-            [174,213,211,182,170,194,171,204,255,39 ],
         ]
     },
     dados = null,
     grafico = null,
     _basicos = {
         'cargos': ["Prefeito","Governador"],
-        'anos': ["2010", "2012", "2014"],
+        'anos': ["2012"],
         'max_partidos': "10"
     },
-    _default = {'ano':"2014",'partidos':"10",'cargo':"Governador"},
+    _default = {'ano':"2012",'partidos':"10",'cargo':"Prefeito"},
     _currentRoute = {
-        'cargo': "Governador",
-        'ano': "2014",
+        'cargo': "Prefeito",
+        'ano': "2012",
         'partidos': "10"
     };
 
@@ -128,12 +102,44 @@ var Main = (function() {
         }
     }
 
-    //Calcula o total de coligações que o partido encabeça (soma da linha da matriz)
+    //Calcula a soma da linha da matriz
     function _cabeca_total(ano, indice_partido, numPartidos) {
       var retorno = 0;
       for ( i=0 ; i<numPartidos ; i++ )
         retorno+=dados[ano][numPartidos][indice_partido][i];
       return retorno;
+    }
+
+    function carrega_dados(){
+        //Carrega json com os dados principais
+        $.ajax({
+            dataType: "json",
+            url: "dados/matriz.json",
+            success: function(data){full_dados = data;},
+            async: false
+        })
+
+        //Carrega lista de partidos por ano
+        $.ajax({
+            dataType: "json",
+            url: "dados/partidos.json",
+            success: function(data){partidos = data;},
+            async: false
+        });
+
+        //Carrega totais de candidatos por partido/ano
+        $.ajax({
+            dataType: "json",
+            url: "dados/totais.json",
+            success: function(data){total_candidatos = data;},
+            async: false
+        });
+
+        $.each(full_dados, function (i, val){
+            if (_basicos["anos"].indexOf(i) == -1){
+                _basicos["anos"].push(i.toString());
+            }
+        });
     }
 
     function _gera_legenda(numPartidos) {
@@ -261,39 +267,27 @@ var Main = (function() {
 
     function _atualiza_seletores(){
         /* Atualizando seletores de ano */
-        if (_currentRoute["ano"] == "2014") {
-            $("#btn2014").addClass("btn-primary");
-            $("#btn2014").removeClass("btn-default");
-            $("#btn2012").addClass("btn-default");
-            $("#btn2012").removeClass("btn-primary");
-            $("#btn2010").addClass("btn-default");
-            $("#btn2010").removeClass("btn-primary");
-        } else if (_currentRoute["ano"] == "2012"){
-            $("#btn2012").addClass("btn-primary");
+            $(".botao-ano").removeClass("btn-default");
+            $(".botao-ano").removeClass("btn-primary");
+            $(".botao-ano").addClass("btn-default");
+        if (_currentRoute["ano"] == "2012") {
             $("#btn2012").removeClass("btn-default");
-            $("#btn2014").addClass("btn-default");
-            $("#btn2014").removeClass("btn-primary");
-            $("#btn2010").addClass("btn-default");
-            $("#btn2010").removeClass("btn-primary");
+            $("#btn2012").addClass("btn-primary");
         } else {
-            $("#btn2010").addClass("btn-primary");
-            $("#btn2010").removeClass("btn-default");
-            $("#btn2014").addClass("btn-default");
-            $("#btn2014").removeClass("btn-primary");
-            $("#btn2012").addClass("btn-default");
-            $("#btn2012").removeClass("btn-primary");
+            $("#btn"+_currentRoute["ano"]).removeClass("btn-default");
+            $("#btn"+_currentRoute["ano"]).addClass("btn-primary");
         }
         /* Atualizando seletores de cargo */
-        if (_currentRoute["ano"] == "2010" || _currentRoute["ano"] == "2014") {
-            $("#btnGovernador").removeClass("btn-default");
-            $("#btnGovernador").addClass("btn-primary");
-            $("#btnPrefeito").addClass("btn-default");
-            $("#btnPrefeito").removeClass("btn-primary");
-        } else {
+        if (_currentRoute["ano"] == "2012") {
             $("#btnPrefeito").removeClass("btn-default");
             $("#btnPrefeito").addClass("btn-primary");
             $("#btnGovernador").addClass("btn-default");
             $("#btnGovernador").removeClass("btn-primary");
+        } else {
+            $("#btnGovernador").removeClass("btn-default");
+            $("#btnGovernador").addClass("btn-primary");
+            $("#btnPrefeito").addClass("btn-default");
+            $("#btnPrefeito").removeClass("btn-primary");
         }
 
         $(".input-partidos")[0].value = _currentRoute["partidos"];
@@ -304,6 +298,7 @@ var Main = (function() {
     }
 
     function inicializa(){
+        carrega_dados();
         crossroads.addRoute('/ano/{anoe}/partidos/{part}', function(anoe, part){
             anoe = parseInt(anoe);
             _currentRoute["ano"] = _basicos["anos"].indexOf(anoe) >= 0 ? anoe : _default['ano'];
@@ -333,6 +328,18 @@ var Main = (function() {
             novo_grafico();
             _atualiza_seletores();
         });
+
+        for (var ano in partidos) {
+            $('<button>', {
+                id: 'btn'+ano,
+                type: 'button',
+                class: 'botao-ano btn btn-default btn-sm',
+                value: ano,
+                text: ano
+            }).appendTo('.div-botao-eleicao')
+        }
+
+        _atualiza_seletores();
 
         var a = $('.botao-ano');
         for (var i=0; i<a.length; i++){
@@ -368,7 +375,7 @@ var Main = (function() {
     return {
         inicializa: inicializa,
         novoGrafico: novo_grafico,
-        atualiza_num_partidos: atualiza_num_partidos
+        atualiza_num_partidos: atualiza_num_partidos,
     };
 
 })();
