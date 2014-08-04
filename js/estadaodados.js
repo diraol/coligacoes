@@ -153,7 +153,7 @@ var Main = (function() {
     /*************************************************************************************************************/
 
     function _filtra_dados(ano, numPartidos){
-        var retorno = []
+        var retorno = [];
         for (i=0; i< numPartidos; i++){
             retorno[i] = [];
             for (j=0; j<numPartidos; j++){
@@ -231,10 +231,7 @@ var Main = (function() {
                 return "(" + total_candidatos[ano][d.index] + ")"
               return "(" + total_candidatos[ano][d.index] + " candidatos)"
               })
-            .style("letter-spacing",1)
-            .style("font-size",12)
-            .style("fill","#000")
-            .style("opacity",1);
+            .style("letter-spacing",1);
 
         // CURVAS (PATHS) ENTRE OS partidos_2012
 
@@ -267,9 +264,9 @@ var Main = (function() {
 
     function _atualiza_seletores(){
         /* Atualizando seletores de ano */
-            $(".botao-ano").removeClass("btn-default");
-            $(".botao-ano").removeClass("btn-primary");
-            $(".botao-ano").addClass("btn-default");
+        $(".botao-ano").removeClass("btn-default");
+        $(".botao-ano").removeClass("btn-primary");
+        $(".botao-ano").addClass("btn-default");
         if (_currentRoute["ano"] == "2012") {
             $("#btn2012").removeClass("btn-default");
             $("#btn2012").addClass("btn-primary");
@@ -300,27 +297,21 @@ var Main = (function() {
     function inicializa(){
         carrega_dados();
         crossroads.addRoute('/ano/{anoe}/partidos/{part}', function(anoe, part){
-            anoe = parseInt(anoe);
             _currentRoute["ano"] = _basicos["anos"].indexOf(anoe) >= 0 ? anoe : _default['ano'];
-            part = parseInt(part);
-            _currentRoute["partidos"] = part <= _basicos["max_partidos"] ? part : _default['partidos'];
+            _currentRoute["partidos"] = parseInt(part) <= full_dados[anoe][0].length ? part : _default['partidos'];
         });
 
         crossroads.addRoute('/partidos/{part}/ano/{anoe}', function(part, anoe){
-            anoe = parseInt(anoe);
             _currentRoute["ano"] = _basicos["anos"].indexOf(anoe) >= 0 ? anoe : _default['ano'];
-            part = parseInt(part);
-            _currentRoute["partidos"] = part <= _basicos["max_partidos"] ? part : _default['partidos'];
+            _currentRoute["partidos"] = parseInt(part) <= full_dados[anoe][0].length ? part : _default['partidos'];
         });
 
         crossroads.addRoute('/ano/{anoe}', function(anoe){
-            anoe = parseInt(anoe);
             _currentRoute["ano"] = _basicos["anos"].indexOf(anoe) >= 0 ? anoe : _default['ano'];
         });
 
         crossroads.addRoute('/partidos/{part}', function(part){
-            part = parseInt(part);
-            _currentRoute["partidos"] = part <= _basicos["max_partidos"] ? part : _default['partidos'];
+            _currentRoute["partidos"] = parseInt(part) <= full_dados[_currentRoute["ano"]][0].length ? part : _default['partidos'];
         });
 
         crossroads.routed.add(function(request, data){

@@ -230,6 +230,12 @@ font: 10px sans-serif;
   fill: #fff;
 }
 
+.candidatos_partido_borda *{
+  fill: #ffffff;
+  font-size: 12px;
+  opacity: 1;
+}
+
 .numero_candidatos {
   font: 12px;
   font-weight: normal;
