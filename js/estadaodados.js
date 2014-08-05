@@ -287,6 +287,7 @@ var Main = (function() {
             $("#btnPrefeito").removeClass("btn-primary");
         }
 
+/* TODO: Reordenar os partidos de acordo com o número de partidos com os quais eles se coligam, talvez por ordem de tamanho em seguida */
         $(".input-partidos")[0].value = _currentRoute["partidos"];
     }
 
@@ -308,6 +309,7 @@ var Main = (function() {
 
         crossroads.addRoute('/ano/{anoe}', function(anoe){
             _currentRoute["ano"] = _basicos["anos"].indexOf(anoe) >= 0 ? anoe : _default['ano'];
+            _currentRoute["partidos"] = _currentRoute["partidos"] <= full_dados[anoe][0].length ? _currentRoute["partidos"] : full_dados[anoe][0].length;
         });
 
         crossroads.addRoute('/partidos/{part}', function(part){
@@ -316,6 +318,9 @@ var Main = (function() {
 
         crossroads.routed.add(function(request, data){
             window.location.hash = "#ano/" + _currentRoute["ano"] + "/partidos/" + _currentRoute["partidos"];
+            $(".input-partidos").attr("max", full_dados[_currentRoute["ano"]][0].length);
+            $(".input-partidos").attr("value", _currentRoute["partidos"]);
+            $(".recorte-max").text(full_dados[_currentRoute["ano"]][0].length);
             novo_grafico();
             _atualiza_seletores();
         });
@@ -329,6 +334,10 @@ var Main = (function() {
                 text: ano
             }).appendTo('.div-botao-eleicao')
         }
+
+        $("#partidos").slider({
+            selection: 'before'
+        })
 
         _atualiza_seletores();
 

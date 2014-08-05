@@ -131,13 +131,13 @@
         <button type="button" disabled id="btnPrefeito" class="botao-cargo btn btn-default btn-sm" value="Prefeito">Prefeito</button>
         <button type="button" disabled id="btnGovernador" class="botao-cargo btn btn-primary btn-sm" value="Governador">Governador</button>
       </div>
-      <div class="col-xs-12 div-botao-eleicao center-block"><label>Eleição:</label>
+      <div class="col-xs-12 div-botao-eleicao center-block"><label>Eleição:</label><br/>
       </div>
       <div class="col-xs-3 text-left">1</div>
       <div class="col-xs-6 text-center">Partidos</div>
       <div class="col-xs-3 text-right recorte-max">10</div>
       <div class="col-xs-12 recorte">
-        <input type="range" min="1" max="10" step="1" value="5" class="input-partidos" onChange="Main.atualiza_num_partidos(this);"/>
+        <input type="text"  id="partidos" data-slider-id="partidosSlider" data-slider-min="1" data-slider-max="10" data-slider-step="1" data-slider-value="5" class="input-partidos" onChange="Main.atualiza_num_partidos(this);"/>
       </div>
       <div class="col-xs-12">
         <aside id="legenda" class="legenda legenda-inner legenda-out"></aside>
